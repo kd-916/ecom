@@ -129,10 +129,6 @@ export default function Cart() {
                     <span>Shipping</span>
                     <span className="text-green-600 font-semibold">Free</span>
                   </div>
-                  <div className="flex justify-between text-gray-500 text-sm">
-                    <span>Discount</span>
-                    <span>- ₹0.00</span>
-                  </div>
                 </div>
 
                 <div className="my-6 border-t border-gray-200" />

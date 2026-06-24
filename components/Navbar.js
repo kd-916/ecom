@@ -13,26 +13,23 @@ const Navbar = () => {
       <div className="w-full px-8 md:px-16">
         <div className="flex items-center justify-between h-10">
           
-          {/* Left: Brand Logo/Name */}
           <div className="flex-shrink-0">
             <Link
               href="/"
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-              {/* Logo Image */}
               <img 
                 src="/Logo.jpg" 
                 alt="Meridian Logo" 
                 className="w-8 h-8 object-contain" 
               />
-              {/* Brand Text */}
+
               <span className="text-[1.35rem] font-medium tracking-wide uppercase">
                 MERIDIAN
               </span>
             </Link>
           </div>
 
-          {/* Right: Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-12">
             <Link
               href="/"
@@ -41,28 +38,22 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href="/faq"
+              href="/collection"
               className="text-sm font-light tracking-widest uppercase hover:opacity-60 transition-opacity"
             >
-              FAQ
+              COLLECTION
             </Link>
             <Link
-              href="/about"
+              href="/newarrival"
               className="text-sm font-light tracking-widest uppercase hover:opacity-60 transition-opacity"
             >
-              About Us
+              NEW ARRIVALS
             </Link>
             <Link
-              href="/contact"
+              href="/bestseller"
               className="text-sm font-light tracking-widest uppercase hover:opacity-60 transition-opacity"
             >
-              Contact Us
-            </Link>
-            <Link
-              href="/policy"
-              className="text-sm font-light tracking-widest uppercase hover:opacity-60 transition-opacity"
-            >
-              Policy
+              BEST SELLERS
             </Link>
             <Link
               href="/cart"
@@ -143,34 +134,22 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href="/faq"
+              href="/collection"
               className="text-lg font-light tracking-widest uppercase hover:opacity-60"
             >
-              FAQ
+              COLLECTION
             </Link>
             <Link
-              href="/about"
+              href="/newarrival"
               className="text-lg font-light tracking-widest uppercase hover:opacity-60"
             >
-              About Us
+              NEW ARRIVALS
             </Link>
             <Link
-              href="/contact"
+              href="/bestseller"
               className="text-lg font-light tracking-widest uppercase hover:opacity-60"
             >
-              Contact Us
-            </Link>
-            <Link
-              href="/policy"
-              className="text-lg font-light tracking-widest uppercase hover:opacity-60"
-            >
-              Policy
-            </Link>
-            <Link
-              href="/"
-              className="text-lg font-light tracking-widest uppercase hover:opacity-60"
-            >
-              Search
+              BEST SELLERS
             </Link>
           </div>
         </div>

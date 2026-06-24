@@ -19,21 +19,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 2: Shop Links */}
-        <div className="flex flex-col">
-          <h3 className="text-[0.7rem] font-bold uppercase tracking-widest mb-6 text-gray-500">Shop</h3>
-          <ul className="space-y-4">
-            <li><Link href="/" className="text-sm hover:text-gray-300 transition-colors uppercase tracking-wider">Collection</Link></li>
-            <li><Link href="/" className="text-sm hover:text-gray-300 transition-colors uppercase tracking-wider">New Arrivals</Link></li>
-            <li><Link href="/" className="text-sm hover:text-gray-300 transition-colors uppercase tracking-wider">Best Sellers</Link></li>
-          </ul>
-        </div>
-
         {/* Column 3: Support Links */}
         <div className="flex flex-col">
           <h3 className="text-[0.7rem] font-bold uppercase tracking-widest mb-6 text-gray-500">Support</h3>
           <ul className="space-y-4">
             <li><Link href="/faq" className="text-sm hover:text-gray-300 transition-colors uppercase tracking-wider">FAQ</Link></li>
+            <li><Link href="/about" className="text-sm hover:text-gray-300 transition-colors uppercase tracking-wider">About Us</Link></li>
             <li><Link href="/contact" className="text-sm hover:text-gray-300 transition-colors uppercase tracking-wider">Contact Us</Link></li>
             <li><Link href="/policy" className="text-sm hover:text-gray-300 transition-colors uppercase tracking-wider">Policy</Link></li>
           </ul>

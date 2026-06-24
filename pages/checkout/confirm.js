@@ -8,9 +8,14 @@ export default function Confirm() {
         Check your details before placing order.
       </p>
 
-      <Link href="/checkout/success" className="btn">
-        Confirm Order
-      </Link>
+      <div className="flex justify-between items-center mt-6">
+        <Link href="/checkout/email" className="text-gray-500 hover:text-[#0a122c] transition-colors font-medium">
+          &larr; Back
+        </Link>
+        <Link href="/checkout/success" className="btn">
+          Confirm Order
+        </Link>
+      </div>
     </CheckoutLayout>
   );
 }
