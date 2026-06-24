@@ -10,14 +10,18 @@ export default function Home() {
   const totalPages = Math.ceil(products.length / itemsPerPage);
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct,
+  );
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const nextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -43,13 +47,24 @@ export default function Home() {
       <main
         className="breathing-bg min-h-screen w-full flex flex-col items-center px-4 md:px-12 pt-32 pb-24"
         style={{
-          background: "linear-gradient(-45deg, #ffffff, #e0e7ff, #ffffff, #e2e8f0)",
+          background:
+            "linear-gradient(-45deg, #ffffff, #e0e7ff, #ffffff, #e2e8f0)",
         }}
       >
         <div className="z-20 flex flex-col items-center justify-center w-full max-w-[1400px] mx-auto">
-          <h2 className="text-[#0a122c] text-3xl md:text-5xl font-bold uppercase tracking-widest mb-16 text-center">
-            Featured Products
-          </h2>
+          <div className="flex flex-col items-center text-center mb-16">
+            <span className="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs mb-4">
+              Our Selection
+            </span>
+            <h2 className="text-[#0a122c] text-3xl md:text-5xl font-black uppercase tracking-widest mb-6">
+              Featured Products
+            </h2>
+            <p className="text-gray-500 max-w-2xl text-sm md:text-base leading-relaxed">
+              A curated edit of our most distinguished pieces. Each item in this
+              collection represents the intersection of timeless design,
+              superior craftsmanship, and modern sartorial excellence.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 w-full mb-16">
             {currentProducts.map((product) => (
@@ -72,7 +87,7 @@ export default function Home() {
                   <h3 className="text-[#0a122c] text-sm font-bold tracking-wide mb-1 uppercase line-clamp-1">
                     {product.name}
                   </h3>
-                  
+
                   <p className="text-gray-500 mb-4 font-medium text-sm">
                     {product.price}
                   </p>
