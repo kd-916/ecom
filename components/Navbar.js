@@ -12,20 +12,19 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-[#0a122c]/10 text-[#0a122c] py-5 transition-all duration-300">
       <div className="w-full px-8 md:px-16">
         <div className="flex items-center justify-between h-10">
-          
           <div className="flex-shrink-0">
             <Link
               href="/"
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-              <img 
-                src="/Logo.jpg" 
-                alt="Meridian Logo" 
-                className="w-8 h-8 object-contain" 
+              <img
+                src="/99logo.jpg"
+                alt="Meridian Logo"
+                className="w-8 h-8 object-contain"
               />
 
               <span className="text-[1.35rem] font-medium tracking-wide uppercase">
-                MERIDIAN
+                99 CLUB
               </span>
             </Link>
           </div>
@@ -129,24 +128,28 @@ const Navbar = () => {
           <div className="flex flex-col px-8 py-10 space-y-8">
             <Link
               href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="text-lg font-light tracking-widest uppercase hover:opacity-60"
             >
               Home
             </Link>
             <Link
               href="/collection"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="text-lg font-light tracking-widest uppercase hover:opacity-60"
             >
               COLLECTION
             </Link>
             <Link
               href="/newarrival"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="text-lg font-light tracking-widest uppercase hover:opacity-60"
             >
               NEW ARRIVALS
             </Link>
             <Link
               href="/bestseller"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="text-lg font-light tracking-widest uppercase hover:opacity-60"
             >
               BEST SELLERS

@@ -6,6 +6,17 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product, quantity) => {
+    // ✅ 1. CLEAR CHECKOUT DATA HERE
+    // This ensures that anytime an item is added, previous checkout progress is wiped.
+    // It is safer to remove specific keys rather than using .clear() so you don't accidentally delete user login tokens.
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem("checkoutEmail");
+      sessionStorage.removeItem("shippingDetails");
+      localStorage.removeItem("checkoutEmail");
+      localStorage.removeItem("shippingDetails");
+      // Add any other specific keys you use for your checkout forms
+    }
+
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
 
@@ -27,7 +38,6 @@ export function CartProvider({ children }) {
     );
   };
 
-  // ✅ ADD THIS
   const clearCart = () => {
     setCart([]);
   };
@@ -38,7 +48,7 @@ export function CartProvider({ children }) {
         cart,
         addToCart,
         removeFromCart,
-        clearCart, // ✅ IMPORTANT
+        clearCart,
       }}
     >
       {children}

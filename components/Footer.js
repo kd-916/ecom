@@ -8,7 +8,7 @@ export default function Footer() {
         
         {/* Column 1: Brand Info */}
         <div className="flex flex-col">
-          <h2 className="text-xl font-bold uppercase tracking-widest mb-6">Meridian</h2>
+          <h2 className="text-xl font-bold uppercase tracking-widest mb-6">99 CLUB</h2>
           <p className="text-gray-400 text-xs leading-relaxed mb-6">
             Elevating the modern uniform through uncompromising craftsmanship and timeless design.
           </p>
@@ -48,7 +48,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-gray-800 text-center md:text-left">
         <p className="text-[0.65rem] text-gray-600 uppercase tracking-widest">
-          © {new Date().getFullYear()} Meridian Apparel. All rights reserved.
+          © {new Date().getFullYear()} 99 CLUB Apparel. All rights reserved.
         </p>
       </div>
     </footer>

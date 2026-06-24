@@ -29,7 +29,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Meridian</title>
+        <link rel="icon" href="/99logo.png" sizes="any" />
+        <title>1999</title>
       </Head>
 
       <style>{`
