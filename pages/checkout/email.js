@@ -1,67 +1,79 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
+// import { useState } from "react";
+// import Link from "next/link";
+// import CheckoutLayout from "@/components/CheckoutLayout";
+
+// export default function Email() {
+//   const [email, setEmail] = useState("");
+//   const isInputEmpty = email.trim() === "";
+
+//   return (
+//     <CheckoutLayout title="Email">
+//       <input
+//         type="email"
+//         placeholder="example@gmail.com"
+//         className="input"
+//         value={email}
+//         onChange={(e) => setEmail(e.target.value)}
+//       />
+
+//       <Link 
+//         href="/checkout/confirm" 
+//         className={`btn ${isInputEmpty ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
+//       >
+//         Next
+//       </Link>
+//     </CheckoutLayout>
+//   );
+// }
+
+
+'use client';
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import CheckoutLayout from "@/components/CheckoutLayout";
 
 export default function Email() {
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+  const router = useRouter();
 
-  // Standard regex pattern for email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  useEffect(() => {
-    const savedEmail = sessionStorage.getItem("checkout_email");
-    if (savedEmail) {
-      setEmail(savedEmail);
-      // Re-validate if data is pulled from session storage
-      if (!emailRegex.test(savedEmail)) {
-        setError("Please enter a valid email address.");
-      }
-    }
-  }, []);
-
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-    sessionStorage.setItem("checkout_email", value);
-
-    // Validate the email format as the user types
-    if (!emailRegex.test(value)) {
-      setError("Please enter a valid email address.");
-    } else {
-      setError("");
-    }
+  const isValidEmail = (value) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(value.trim());
   };
 
-  const isNextDisabled = email.trim() === "" || error !== "";
+  const handleNext = () => {
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    localStorage.setItem("email", email);
+
+    router.push("/checkout/confirm");
+  };
+
+  const valid = isValidEmail(email);
 
   return (
     <CheckoutLayout title="Email">
-      <div>
-        <input
-          type="email"
-          placeholder="example@gmail.com"
-          className={`input w-full ${error ? "border-red-500 focus:outline-red-500" : ""}`}
-          value={email}
-          onChange={handleEmailChange}
-        />
-        
-        {error && (
-          <p className="text-red-500 text-sm mt-1">{error}</p>
-        )}
-      </div>
+      <input
+        type="email"
+        placeholder="example@gmail.com"
+        className="input"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-      <div className="flex justify-between items-center mt-6">
-        <Link href="/checkout/phone" className="text-gray-500 hover:text-[#0a122c] transition-colors font-medium">
-          &larr; Back
-        </Link>
-        <Link 
-          href="/checkout/confirm" 
-          className={`btn ${isNextDisabled ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
-        >
-          Next
-        </Link>
-      </div>
+      <button
+        onClick={handleNext}
+        disabled={!valid}
+        className={`btn ${
+          !valid ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+      >
+        Next
+      </button>
     </CheckoutLayout>
   );
 }

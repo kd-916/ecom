@@ -1,73 +1,82 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
+// import { useState } from "react";
+// import Link from "next/link";
+// import CheckoutLayout from "@/components/CheckoutLayout";
+
+// export default function Phone() {
+//   const [phone, setPhone] = useState("");
+//   const isInputEmpty = phone.trim() === "";
+
+//   return (
+//     <CheckoutLayout title="Phone Number">
+//       <input
+//         type="tel"
+//         placeholder="+91 XXXXX XXXXX"
+//         className="input"
+//         value={phone}
+//         onChange={(e) => setPhone(e.target.value)}
+//       />
+
+//       <Link 
+//         href="/checkout/email" 
+//         className={`btn ${isInputEmpty ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
+//       >
+//         Next
+//       </Link>
+//     </CheckoutLayout>
+//   );
+// }
+
+
+'use client';
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import CheckoutLayout from "@/components/CheckoutLayout";
 
 export default function Phone() {
   const [phone, setPhone] = useState("");
-  const [error, setError] = useState("");
+  const router = useRouter();
 
-  useEffect(() => {
-    const savedPhone = sessionStorage.getItem("checkout_phone");
-    if (savedPhone) {
-      setPhone(savedPhone);
-      // Re-validate if data is pulled from session storage
-      if (!/^\d*$/.test(savedPhone)) {
-        setError("Phone number can only contain numbers.");
-      } else if (savedPhone.length !== 10) {
-        setError("Phone number must be exactly 10 digits.");
-      }
-    }
-  }, []);
-
-  const handlePhoneChange = (e) => {
-    const value = e.target.value;
-    setPhone(value);
-    sessionStorage.setItem("checkout_phone", value);
-
-    // 1. Check if it contains anything other than numbers
-    if (!/^\d*$/.test(value)) {
-      setError("Phone number can only contain numbers.");
-    } 
-    // 2. Check if the length is exactly 10
-    else if (value.length !== 10) {
-      setError("Phone number must be exactly 10 digits.");
-    } 
-    // 3. Clear error if all conditions are met
-    else {
-      setError("");
-    }
+  const isValidPhone = (value) => {
+    return value.length === 10; // India strict 10-digit rule
   };
 
-  const isNextDisabled = phone.trim() === "" || error !== "";
+  const handleNext = () => {
+    if (!isValidPhone(phone)) {
+      alert("Please enter a valid 10-digit phone number");
+      return;
+    }
+
+    localStorage.setItem("phone", phone);
+    router.push("/checkout/email");
+  };
 
   return (
     <CheckoutLayout title="Phone Number">
-      <div>
-        <input
-          type="tel"
-          placeholder="Enter 10-digit phone number"
-          className={`input w-full ${error ? "border-red-500 focus:outline-red-500" : ""}`}
-          value={phone}
-          onChange={handlePhoneChange}
-          maxLength={10} // Optional: Prevents user from typing more than 10 characters
-        />
+      <input
+        type="text"
+        inputMode="numeric"
+        placeholder="Enter 10 digit number"
+        className="input"
+        value={phone}
+        onChange={(e) => {
+          const value = e.target.value.replace(/[^0-9]/g, "");
+          setPhone(value);
+        }}
+        maxLength={10}
+      />
 
-        {error && (
-          <p className="text-red-500 text-sm mt-1">{error}</p>
-        )}
-      </div>
-
-      <div className="flex justify-between items-center mt-6">
-        <Link href="/checkout/country" className="text-gray-500 hover:text-[#0a122c] transition-colors font-medium">
-          &larr; Back
-        </Link>
-        <Link 
-          href="/checkout/email" 
-          className={`btn ${isNextDisabled ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}
-        >
-          Next
-        </Link>
-      </div>
+      <button
+        onClick={handleNext}
+        disabled={!isValidPhone(phone)}
+        className={`btn ${
+          !isValidPhone(phone)
+            ? "opacity-50 cursor-not-allowed"
+            : ""
+        }`}
+      >
+        Next
+      </button>
     </CheckoutLayout>
   );
 }
